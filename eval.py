@@ -6,9 +6,11 @@ from keras.preprocessing import image
 
 from utils import str_util, cv_util
 import img_noise_generator
-
+log_dir = './logs'
+if not os.path.exists(log_dir):
+    os.mkdir(log_dir)
 logging.basicConfig(level=logging.INFO,
-                    filename='./logs/app.log',
+                    filename=os.path.join(log_dir, 'app.log'),
                     filemode='a',
                     format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 

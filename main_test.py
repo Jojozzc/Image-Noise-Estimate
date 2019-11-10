@@ -1,6 +1,10 @@
 import sys
 import os
+
+
+
 from img_noise_generator import img_generator as noise_img_gen
+import model_helper
 
 if __name__ == '__main__':
     curPath = os.path.abspath(os.path.dirname(__file__))
@@ -14,7 +18,7 @@ from keras.layers import Conv2D, MaxPooling2D,GlobalAveragePooling2D, BatchNorma
 from keras.layers import Activation, Dropout, Flatten, Dense, Input
 from keras import backend as K
 from keras.callbacks import ModelCheckpoint,TensorBoard
-from mymodel import gpu_monitor
+import gpu_monitor
 from utils import str_util, config_util, logging_helper
 from keras.models import Model
 import my_callbacks
@@ -355,3 +359,4 @@ if __name__ == '__main__':
     model = create_noise_est_model(img_height=img_height, img_width=img_width, channel_num=3)
     callbacks = [my_callbacks.NoiseEstCallback(img_dir=test_dir, height=img_height, width=img_width, max_sigma=60)]
     model.fit_generator(generator=noise_img_gen(img_dir=img_dir, batch_size=batch_size, sigma_max_value=60), steps_per_epoch=samples_num // batch_size, epochs=epochs, callbacks=callbacks)
+    model_helper.save_model(model=model, struct_path='est_model.json', weight_path='est_model.h5')

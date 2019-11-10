@@ -4,9 +4,6 @@ import os
 
 
 import eval
-from mymodel import evaluate, model_helper
-import datetime
-from mymodel import pair2_test_new_data
 import traceback
 class NoiseEstCallback(keras.callbacks.Callback):
 
