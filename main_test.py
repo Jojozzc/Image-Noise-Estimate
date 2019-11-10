@@ -353,8 +353,8 @@ if __name__ == '__main__':
     nb_train_samples = 220
     nb_validation_samples = 100
     #
-    img_dir = './origin-gen'
-    test_dir = './img_test'
+    img_dir = './images/origin-gen'
+    test_dir = './images/img_test'
     samples_num = 5200
     model = create_noise_est_model(img_height=img_height, img_width=img_width, channel_num=3)
     callbacks = [my_callbacks.NoiseEstCallback(img_dir=test_dir, height=img_height, width=img_width, max_sigma=60)]
